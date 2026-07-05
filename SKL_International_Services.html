@@ -45,6 +45,19 @@
     padding:9px 16px;border:2px solid var(--signal);white-space:nowrap;
   }
 
+  .top-tabs{background:var(--cream);border-bottom:2px solid var(--ink);}
+  .top-tabs .wrap{display:flex;gap:0;justify-content:center;}
+  .top-tabs a{
+    flex:1;text-align:center;text-decoration:none;color:var(--ink);
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;
+    text-transform:uppercase;padding:12px 10px;border-right:1px solid var(--line);
+    transition:background .15s ease,color .15s ease;
+  }
+  .top-tabs a:last-child{border-right:none;}
+  .top-tabs a:hover{background:var(--ink);color:var(--cream);}
+  .top-tabs a .arrow{opacity:0.6;margin-left:4px;}
+  @media(min-width:600px){.top-tabs a{flex:none;padding:12px 24px;}}
+
   /* hero */
   .hero{padding:50px 0 40px;position:relative;overflow:hidden;}
   .hero-inner{
@@ -222,6 +235,12 @@
     <a class="hdr-cta" href="https://wa.me/918919855159" target="_blank" rel="noopener">WhatsApp for Rates</a>
   </div>
 </header>
+<div class="top-tabs">
+  <div class="wrap">
+    <a href="sk-logistics.html">Home <span class="arrow">→</span></a>
+    <a href="SKL_Tracking.html">Track Shipment <span class="arrow">→</span></a>
+  </div>
+</div>
 <div class="barcode"></div>
 
 <section class="hero">
