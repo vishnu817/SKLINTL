@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SK Logistics — Bahadurpura, Hyderabad | DTDC & Rivigo Franchisee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14213D;
+    --paper:#EFE7D8;
+    --paper-dark:#E4D9C2;
+    --signal:#E8590C;
+    --signal-dark:#C24710;
+    --route:#2F6844;
+    --cream:#FAF7F0;
+    --line:#C9BC9E;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    margin:0;
+  }
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px;}
+
+  /* barcode divider */
+  .barcode{
+    height:22px;
+    background-repeat:repeat-x;
+    background-image:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 5px,var(--ink) 5px 8px,transparent 8px 14px,var(--ink) 14px 15px,transparent 15px 22px);
+    opacity:0.85;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease;}
+    .reveal.in{opacity:1;transform:none;}
+  }
+
+  /* header */
+  header{
+    background:var(--ink);
+    color:var(--cream);
+    padding:14px 0;
+    position:sticky;top:0;z-index:50;
+    border-bottom:3px solid var(--signal);
+  }
+  header .wrap{display:flex;justify-content:space-between;align-items:center;}
+  .brand{display:flex;flex-direction:column;line-height:1;}
+  .brand .name{font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;letter-spacing:0.04em;}
+  .brand .sub{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--signal);margin-top:3px;}
+  nav a{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:0.06em;
+    text-decoration:none;color:var(--cream);
+    margin-left:22px;
+    opacity:0.85;
+  }
+  nav a:hover{opacity:1;color:var(--signal);}
+  nav{display:none;}
+  @media(min-width:720px){nav{display:block;}}
+
+  /* hero */
+  .hero{padding:56px 0 40px;}
+  .waybill{
+    background:var(--cream);
+    border:2px solid var(--ink);
+    position:relative;
+    display:grid;
+    grid-template-columns:1fr;
+    overflow:hidden;
+  }
+  @media(min-width:760px){.waybill{grid-template-columns:1.3fr 1fr;}}
+  .waybill::before{
+    content:"";
+    position:absolute;
+    left:0;right:0;top:0;
+    height:0;
+  }
+  .stub{
+    padding:34px 30px;
+    border-bottom:1px dashed var(--line);
+  }
+  @media(min-width:760px){.stub{border-bottom:none;border-right:1px dashed var(--line);}}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:0.14em;
+    color:var(--signal-dark);
+    margin-bottom:10px;
+  }
+  .hero h1{font-size:clamp(30px,6vw,46px);color:var(--ink);line-height:1.04;}
+  .hero p.tag{
+    font-size:16px;color:#3B4560;max-width:40ch;margin-top:14px;
+  }
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;}
+  .btn{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;letter-spacing:0.04em;
+    padding:13px 20px;
+    text-decoration:none;
+    display:inline-flex;align-items:center;gap:8px;
+    border:2px solid var(--ink);
+    transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-solid{background:var(--signal);border-color:var(--signal);color:var(--cream);}
+  .btn-solid:hover{background:var(--signal-dark);border-color:var(--signal-dark);}
+  .btn-line{background:transparent;color:var(--ink);}
+
+  .stamp{
+    width:118px;height:118px;border-radius:50%;
+    border:2.5px solid var(--signal);
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;
+    transform:rotate(-9deg);
+    color:var(--signal);
+    font-family:'Oswald',sans-serif;
+    font-size:11.5px;letter-spacing:0.06em;
+    line-height:1.35;font-weight:600;
+    position:absolute;
+    top:18px;right:18px;
+    background:rgba(232,89,12,0.05);
+  }
+  .stamp::before{
+    content:"";
+    position:absolute;
+    inset:6px;
+    border:1px dashed var(--signal);
+    border-radius:50%;
+  }
+  .stamp span{padding:0 10px;}
+
+  .panel{padding:34px 30px;display:flex;flex-direction:column;justify-content:center;gap:16px;background:repeating-linear-gradient(135deg,rgba(20,33,61,0.03) 0 10px,transparent 10px 20px);}
+  .field{border-top:1px solid var(--line);padding-top:10px;}
+  .field .k{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#6b6249;text-transform:uppercase;}
+  .field .v{font-family:'IBM Plex Mono',monospace;font-size:15px;margin-top:4px;}
+
+  /* services */
+  section{padding:56px 0;}
+  .section-head{max-width:56ch;margin-bottom:32px;}
+  .section-head .eyebrow{margin-bottom:8px;}
+  .section-head h2{font-size:clamp(24px,4vw,32px);}
+  .section-head p{color:#3B4560;margin-top:10px;font-size:15px;}
+
+  .grid{display:grid;grid-template-columns:1fr;gap:2px;background:var(--ink);border:2px solid var(--ink);}
+  @media(min-width:640px){.grid{grid-template-columns:1fr 1fr;}}
+  @media(min-width:960px){.grid{grid-template-columns:1fr 1fr 1fr;}}
+  .card{
+    background:var(--cream);
+    padding:26px 24px;
+  }
+  .card .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;
+    color:var(--signal-dark);margin-bottom:10px;display:block;
+  }
+  .card h3{font-size:19px;margin-bottom:8px;}
+  .card p{font-size:14px;color:#41496a;line-height:1.55;margin:0;}
+
+  /* partners strip */
+  .partners{background:var(--ink);color:var(--cream);padding:30px 0;}
+  .partners .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;}
+  .partners .lead{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:var(--signal);white-space:nowrap;}
+  .partner-list{display:flex;flex-wrap:wrap;gap:10px 26px;font-family:'Oswald',sans-serif;letter-spacing:0.03em;font-size:15px;}
+
+  /* how it works */
+  .steps{counter-reset:step;display:grid;gap:0;grid-template-columns:1fr;}
+  @media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr);}}
+  .step{
+    padding:24px 22px;
+    border-top:2px solid var(--ink);
+    position:relative;
+  }
+  @media(min-width:760px){.step{border-top:none;border-left:2px solid var(--ink);}
+    .step:first-child{border-left:none;}}
+  .step .num{
+    font-family:'Oswald',sans-serif;font-size:34px;color:var(--signal);
+    line-height:1;margin-bottom:10px;
+  }
+  .step h3{font-size:16px;margin-bottom:6px;}
+  .step p{font-size:13.5px;color:#41496a;margin:0;line-height:1.5;}
+
+  /* terms */
+  .terms{background:var(--paper-dark);border:2px solid var(--ink);padding:28px 26px;}
+  .terms h3{font-size:16px;margin-bottom:14px;}
+  .terms ul{margin:0;padding-left:0;list-style:none;display:grid;gap:10px;}
+  .terms li{font-size:13.5px;color:#3B4560;padding-left:16px;position:relative;}
+  .terms li::before{content:"—";position:absolute;left:0;color:var(--signal-dark);}
+  .terms .mono-note{margin-top:16px;font-size:11.5px;color:#6b6249;font-family:'IBM Plex Mono',monospace;}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:1fr;gap:2px;background:var(--ink);border:2px solid var(--ink);}
+  @media(min-width:760px){.contact-grid{grid-template-columns:1.1fr 1fr;}}
+  .contact-card{background:var(--cream);padding:30px 28px;}
+  .contact-card .k{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#6b6249;text-transform:uppercase;margin-top:20px;}
+  .contact-card .k:first-child{margin-top:0;}
+  .contact-card .v{font-size:17px;margin-top:5px;}
+  .contact-card .v a{text-decoration:none;color:var(--signal-dark);font-weight:600;}
+  .map-card{background:var(--ink);color:var(--cream);padding:30px 28px;display:flex;flex-direction:column;justify-content:space-between;}
+  .map-card iframe{width:100%;height:220px;border:0;filter:grayscale(0.3) contrast(1.05);}
+  .map-card .addr{font-family:'IBM Plex Mono',monospace;font-size:13px;margin-top:16px;line-height:1.6;color:#D9D3C0;}
+
+  footer{
+    background:var(--ink);color:#B9BFD4;
+    padding:26px 0;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;
+  }
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <div class="name">SK LOGISTICS</div>
+      <div class="sub">DTDC · RIVIGO — AUTHORIZED FRANCHISEE</div>
+    </div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#how">Book a Parcel</a>
+      <a href="#terms">Terms</a>
+      <a href="#contact">Visit Us</a>
+    </nav>
+  </div>
+</header>
+
+<div class="barcode"></div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="waybill reveal">
+      <div class="stamp"><span>Authorized Franchisee · Bahadurpura</span></div>
+      <div class="stub">
+        <div class="eyebrow">Consignment Booking Counter</div>
+        <h1>Send it today.<br>Track it your way.</h1>
+        <p class="tag">Your neighbourhood courier counter in Bahadurpura — documents, parcels, and cargo booked across DTDC and Rivigo networks, with same-day pickup on request.</p>
+        <div class="cta-row">
+          <a class="btn btn-solid" href="tel:+918919855159">Call to Book →</a>
+          <a class="btn btn-line" href="https://wa.me/918919855159" target="_blank" rel="noopener">WhatsApp Us</a>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="field">
+          <div class="k">Origin</div>
+          <div class="v">Bahadurpura, Hyderabad – 500064</div>
+        </div>
+        <div class="field">
+          <div class="k">Network</div>
+          <div class="v">DTDC · Rivigo (Mahindra)</div>
+        </div>
+        <div class="field">
+          <div class="k">Reach</div>
+          <div class="v">8919855159 / 8886507472</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="barcode"></div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow mono">What we book</div>
+      <h2>Every shipment has a lane.</h2>
+      <p>From a single envelope to a full consignment, each parcel is booked on the network best suited for its speed, size, and destination.</p>
+    </div>
+    <div class="grid">
+      <div class="card reveal">
+        <span class="tag">Documents</span>
+        <h3>Letters &amp; Papers</h3>
+        <p>Contracts, certificates, and business mail booked and dispatched the same day, priced by weight slab.</p>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Non-Documents</span>
+        <h3>Parcels &amp; Packages</h3>
+        <p>Boxed goods, gifts, and personal shipments — packed, weighed, and booked at the counter or picked up from your address.</p>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Cargo</span>
+        <h3>Bulk &amp; Business Cargo</h3>
+        <p>Heavier and bulk consignments routed through the Rivigo surface network for cost-effective long-haul delivery.</p>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Pickup</span>
+        <h3>Doorstep Collection</h3>
+        <p>Regular shippers get scheduled pickups — no need to visit the counter for every consignment.</p>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Tracking</span>
+        <h3>Consignment Tracking</h3>
+        <p>Every booking gets a tracking ID at the counter, checked against the DTDC and Rivigo tracking portals directly.</p>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Business Accounts</span>
+        <h3>Regular Shippers</h3>
+        <p>Shops and businesses that ship often can set up a running account for faster counter turnaround.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="partners">
+  <div class="wrap">
+    <span class="lead">ALSO SHIPS VIA</span>
+    <div class="partner-list">
+      <span>Blue Dart</span>
+      <span>Delhivery</span>
+      <span>XpressBees</span>
+    </div>
+  </div>
+</div>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow mono">Booking process</div>
+      <h2>Three steps to dispatch.</h2>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="num mono">01</div>
+        <h3>Reach out</h3>
+        <p>Call, WhatsApp, or walk in to the Bahadurpura counter with your parcel.</p>
+      </div>
+      <div class="step">
+        <div class="num mono">02</div>
+        <h3>Weigh &amp; book</h3>
+        <p>We weigh it, confirm the destination and service, and issue your consignment note on the spot.</p>
+      </div>
+      <div class="step">
+        <div class="num mono">03</div>
+        <h3>Track to delivery</h3>
+        <p>Your tracking ID follows the shipment on the DTDC or Rivigo network until it's signed for.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="barcode"></div>
+
+<section id="terms">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow mono">Fine print</div>
+      <h2>Booking terms</h2>
+    </div>
+    <div class="terms reveal">
+      <h3>Liability at owner's risk</h3>
+      <ul>
+        <li>Documents are covered up to ₹1,500 per consignment.</li>
+        <li>Non-document parcels are covered up to ₹2,500 per consignment.</li>
+        <li>All shipments are booked at owner's risk beyond the declared liability limit.</li>
+        <li>Higher-value shipments can be insured separately at the counter — ask us before booking.</li>
+      </ul>
+      <div class="mono-note">Standard terms apply per DTDC / Rivigo network policy. Confirm current rates and coverage at the counter.</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow mono">Find the counter</div>
+      <h2>Visit or call ahead.</h2>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-card">
+        <div class="k">Phone</div>
+        <div class="v"><a href="tel:+918919855159">89198 55159</a></div>
+        <div class="k">Alternate</div>
+        <div class="v"><a href="tel:+918886507472">88865 07472</a></div>
+        <div class="k">WhatsApp</div>
+        <div class="v"><a href="https://wa.me/918919855159" target="_blank" rel="noopener">Message on WhatsApp</a></div>
+        <div class="k">Address</div>
+        <div class="v">Bahadurpura, Hyderabad – 500064, Telangana</div>
+      </div>
+      <div class="map-card">
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Bahadurpura%2C%20Hyderabad%2C%20500064&t=&z=14&ie=UTF8&iwloc=&output=embed">
+        </iframe>
+        <div class="addr">SK LOGISTICS<br>Bahadurpura, Hyderabad – 500064<br>Authorized DTDC &amp; Rivigo Franchisee</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> SK Logistics · Sri Krishna Traders</span>
+    <span>Bahadurpura, Hyderabad – 500064</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  }
+</script>
+
+</body>
+</html>
